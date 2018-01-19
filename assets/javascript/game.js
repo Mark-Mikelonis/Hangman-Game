@@ -5,13 +5,13 @@ var currentWord = "";
 var placeholder = [];
 var guesses = [];
 var charArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
-var nameArray = ["Chumbucket", "Blackfinger", "Cheedo", "Master Blaster", "Furiosa", "Splenid"];
+var nameArray = ["chumbucket", "blackfinger", "cheedo", "masterblaster", "furiosa", "splenid"];
 currentWord = getCurrentWord();
+
 console.log("currentWord: " + currentWord);
 makePlaceholder(currentWord);
 setup();
 console.log("placeholder: " + placeholder);
-// makePlaceholder(currentWord);
 function reset() {
     currentWord = getCurrentWord();
     guesses = [];
@@ -28,9 +28,7 @@ function makePlaceholder(word) {
         if (c != "-" || c != " ") {
             console.log("in if ");
             placeholder.push("_");
-            // if (i < word.length - 1) {
-            //     placeholder += " ";
-            // }
+             
         } else {
             console.log("in else");
             placeholder.push(c.toString());
@@ -38,7 +36,14 @@ function makePlaceholder(word) {
         console.log("placeholder: " + placeholder);
     }
 }
-
+function win(){
+    alert("You Win!");
+    reset();
+}
+function lose(){
+    alert("Sorry! You lost. The word is " + currentWord +".");
+    reset();
+}
 function getCurrentWord() {
     return nameArray[Math.floor(Math.random() * nameArray.length)];
 }
@@ -49,6 +54,10 @@ document.onkeyup = function(element) {
     console.log("currentWord:" + currentWord);
     // multiple character instances
     // uppercase comparison
+    if (guessesLeft <= 0){
+        reset();
+        lose();
+    }
     if (charArray.indexOf(userGuess) !== -1 && guesses.indexOf(userGuess) === -1) {
     	guesses.push(userGuess);
     	guessesLeft--;
@@ -57,16 +66,26 @@ document.onkeyup = function(element) {
             var indexOf = currentWord.indexOf(userGuess);
             if (c === currentWord[indexOf]) {
                 placeholder[indexOf] = c.toString();
+                for (var i = (indexOf+1); i<placeholder.length;i++){
+                    if (c === currentWord[i]){
+                        placeholder[i] = c.toString();
+                    }
+                }
             }
+            console.log(placeholder.toString() == currentWord.toString());
+            console.log("placeholder: " + placeholder.toString());
+            console.log("currentWord: "+currentWord.toString());
+            if (placeholder.indexOf("_") == -1) {
+                wins++;
+                
+                win();
         }
-        if (placeholder === currentWord) {
-            wins++;
-            reset();
         }
+        
     } 
     var html = "<p>Wins: " + wins + "</p>" + 
     "<p>Current Word</p>" + 
-    "<p>" + placeholder.toString() + "</p>" + 
+    "<p>" + placeholder.join(" ") + "</p>" + 
     "<p>Number of guesses remaining</p>" + 
     "<p>" + guessesLeft + "</p>" + 
     "<p>Letters already guessed</p>" + 
