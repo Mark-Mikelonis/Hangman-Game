@@ -39,10 +39,6 @@ function makePlaceholder(word) {
     }
 }
 
-function replaceAt(string, index, replace) {
-    return string.substring(0, index) + replace + string.substring(index + 1);
-}
-
 function getCurrentWord() {
     return nameArray[Math.floor(Math.random() * nameArray.length)];
 }
@@ -51,6 +47,8 @@ document.onkeyup = function(element) {
 
     console.log("userGuess: " + userGuess);
     console.log("currentWord:" + currentWord);
+    // multiple character instances
+    // uppercase comparison
     if (charArray.indexOf(userGuess) !== -1 && guesses.indexOf(userGuess) === -1) {
     	guesses.push(userGuess);
     	guessesLeft--;
@@ -58,7 +56,7 @@ document.onkeyup = function(element) {
             var c = userGuess.charAt(i);
             var indexOf = currentWord.indexOf(userGuess);
             if (c === currentWord[indexOf]) {
-                placeholder = replaceAt(placeholder, indexOf, c.toString());
+                placeholder[indexOf] = c.toString();
             }
         }
         if (placeholder === currentWord) {
