@@ -16,6 +16,14 @@ window.onload = function draw(){
     audioElement = document.createElement("audio");
     audioElement.setAttribute("src", "assets/audio/max.mp3");
     audioElement.loop = true;
+    // Theme Button
+      $(".theme-button").on("click", function() {
+        audioElement.play();
+      });
+
+      $(".pause-button").on("click", function() {
+        audioElement.pause();
+      });
     setup();
 }
 function setup() {
@@ -28,9 +36,8 @@ function setup() {
     "<p>Letters already guessed</p>" + 
     "<p>" + guesses.toString().toUpperCase() + "</p>";
     document.querySelector("#hangman").innerHTML = html;
-    // while(buttonPressed == false){
-        audioElement.play();
-    // }
+    audioElement.play();
+   
     
 }
 console.log("placeholder: " + placeholder);

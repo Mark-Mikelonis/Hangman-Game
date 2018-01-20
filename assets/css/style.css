@@ -35,3 +35,11 @@ h2 {
 	border-color: yellow;
 	border-style: dashed;
 }
+.audioControl{
+	text-align: center;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	/*border-color: yellow;
+	border-style: dashed;*/
+}
