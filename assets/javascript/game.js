@@ -10,15 +10,16 @@ currentWord = getCurrentWord();
 
 console.log("currentWord: " + currentWord);
 makePlaceholder(currentWord);
-setup();
 console.log("placeholder: " + placeholder);
 function reset() {
     currentWord = getCurrentWord();
     guesses = [];
+    userGuess = "";
+    placeholder = [];
     guessesLeft = 12;
+    makePlaceholder(currentWord);
 }
 
-function setup() {}
 
 function makePlaceholder(word) {
     for (var i = 0; i < word.length; i++) {
@@ -37,11 +38,18 @@ function makePlaceholder(word) {
     }
 }
 function win(){
-    alert("You Win!");
+    // placeholder = currentWord.toArray();
+    // setTimeout(function(){
+    //do what you need here
+    alert("You Win! The word was " + currentWord);
     reset();
+// }, 2000);
 }
+    
+    
+
 function lose(){
-    alert("Sorry! You lost. The word is " + currentWord +".");
+    alert("Sorry! You lost. The word was " + currentWord +".");
     reset();
 }
 function getCurrentWord() {
@@ -54,13 +62,17 @@ document.onkeyup = function(element) {
     console.log("currentWord:" + currentWord);
     // multiple character instances
     // uppercase comparison
-    if (guessesLeft <= 0){
-        reset();
-        lose();
-    }
+    // if (guessesLeft <= 0){
+    //     reset();
+        
+    // }
     if (charArray.indexOf(userGuess) !== -1 && guesses.indexOf(userGuess) === -1) {
     	guesses.push(userGuess);
     	guessesLeft--;
+        if (guessesLeft <= 0){
+        lose();
+        
+    }
         for (var i = 0; i < currentWord.length; i++) {
             var c = userGuess.charAt(i);
             var indexOf = currentWord.indexOf(userGuess);
@@ -72,14 +84,13 @@ document.onkeyup = function(element) {
                     }
                 }
             }
-            console.log(placeholder.toString() == currentWord.toString());
             console.log("placeholder: " + placeholder.toString());
             console.log("currentWord: "+currentWord.toString());
             if (placeholder.indexOf("_") == -1) {
+                placeholder[i] = c.toString();
                 wins++;
-                
                 win();
-        }
+            }
         }
         
     } 
