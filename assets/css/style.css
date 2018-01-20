@@ -12,7 +12,7 @@ h1 {
 	font-weight: bolder;
 }
 h2 {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 }
 .hangBanner {
@@ -21,6 +21,17 @@ h2 {
 .thumbnail {
 	float: right;
 	margin-right: 20px;
+	margin-top: 20px;
 	height: 200px;
 	width: 300px;
+}
+.rightPanel {
+	padding-top: 20px;
+	border-color: yellow;
+	border-style: dashed;
+
+}
+.leftPanel {
+	border-color: yellow;
+	border-style: dashed;
 }

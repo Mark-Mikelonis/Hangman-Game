@@ -14,7 +14,7 @@ window.onload = function draw(){
     setup();
 }
 function setup() {
-    var html = "<h2>Press any key to get started</h2>" +
+    var html = "<h2>Press any key to get started!</h2>" +
     "<p>Wins: " + wins + "</p>" + 
     "<p>Current Word</p>" + 
     "<p>" + placeholder.join(" ") + "</p>" + 
@@ -104,13 +104,15 @@ document.onkeyup = function(element) {
         }
         
     } 
-    var html = "<h2>Press any key to get started</h2>" +
-    "<p>Wins: " + wins + "</p>" + 
-    "<p>Current Word</p>" + 
-    "<p>" + placeholder.join(" ") + "</p>" + 
-    "<p>Number of guesses remaining</p>" + 
-    "<p>" + guessesLeft + "</p>" + 
-    "<p>Letters already guessed</p>" + 
-    "<p>" + guesses.toString().toUpperCase() + "</p>";
-    document.querySelector("#hangman").innerHTML = html;
+
+    setup();
+    // var html = "<h2>Press any key to get started</h2>" +
+    // "<p>Wins: " + wins + "</p>" + 
+    // "<p>Current Word</p>" + 
+    // "<p>" + placeholder.join(" ") + "</p>" + 
+    // "<p>Number of guesses remaining</p>" + 
+    // "<p>" + guessesLeft + "</p>" + 
+    // "<p>Letters already guessed</p>" + 
+    // "<p>" + guesses.toString().toUpperCase() + "</p>";
+    // document.querySelector("#hangman").innerHTML = html;
 }
