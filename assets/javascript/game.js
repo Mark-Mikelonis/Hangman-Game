@@ -8,9 +8,14 @@ var charArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
 var nameArray = ["chumbucket", "blackfinger", "cheedo", "masterblaster", "furiosa", "splenid"];
 currentWord = getCurrentWord();
 
+var audioElement;
+
 console.log("currentWord: " + currentWord);
 makePlaceholder(currentWord);
 window.onload = function draw(){
+    audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", "assets/audio/max.mp3");
+    audioElement.loop = true;
     setup();
 }
 function setup() {
@@ -19,10 +24,14 @@ function setup() {
     "<p>Current Word</p>" + 
     "<p>" + placeholder.join(" ") + "</p>" + 
     "<p>Number of guesses remaining</p>" + 
-    "<p>" + guessesLeft + "</p>" + 
+    "<h1>" + guessesLeft + "</h1>" + 
     "<p>Letters already guessed</p>" + 
-    "<p>" + guesses.toString() + "</p>";
+    "<p>" + guesses.toString().toUpperCase() + "</p>";
     document.querySelector("#hangman").innerHTML = html;
+    // while(buttonPressed == false){
+        audioElement.play();
+    // }
+    
 }
 console.log("placeholder: " + placeholder);
 function reset() {
@@ -73,6 +82,8 @@ function getCurrentWord() {
 }
 document.onkeyup = function(element) {
     userGuess = element.key;
+    audioElement.loop = false;
+    audioElement.pause();
 
     console.log("userGuess: " + userGuess);
     console.log("currentWord:" + currentWord);
