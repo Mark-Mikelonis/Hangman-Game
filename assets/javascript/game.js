@@ -11,7 +11,11 @@ currentWord = getCurrentWord();
 console.log("currentWord: " + currentWord);
 makePlaceholder(currentWord);
 window.onload = function draw(){
-    var html = "<p>Wins: " + wins + "</p>" + 
+    setup();
+}
+function setup() {
+    var html = "<h2>Press any key to get started</h2>" +
+    "<p>Wins: " + wins + "</p>" + 
     "<p>Current Word</p>" + 
     "<p>" + placeholder.join(" ") + "</p>" + 
     "<p>Number of guesses remaining</p>" + 
@@ -20,7 +24,6 @@ window.onload = function draw(){
     "<p>" + guesses.toString() + "</p>";
     document.querySelector("#hangman").innerHTML = html;
 }
-
 console.log("placeholder: " + placeholder);
 function reset() {
     currentWord = getCurrentWord();
@@ -29,6 +32,7 @@ function reset() {
     placeholder = [];
     guessesLeft = 12;
     makePlaceholder(currentWord);
+    setup();
 }
 
 function makePlaceholder(word) {
@@ -100,12 +104,13 @@ document.onkeyup = function(element) {
         }
         
     } 
-    var html = "<p>Wins: " + wins + "</p>" + 
+    var html = "<h2>Press any key to get started</h2>" +
+    "<p>Wins: " + wins + "</p>" + 
     "<p>Current Word</p>" + 
     "<p>" + placeholder.join(" ") + "</p>" + 
     "<p>Number of guesses remaining</p>" + 
     "<p>" + guessesLeft + "</p>" + 
     "<p>Letters already guessed</p>" + 
-    "<p>" + guesses.toString() + "</p>";
+    "<p>" + guesses.toString().toUpperCase() + "</p>";
     document.querySelector("#hangman").innerHTML = html;
 }
