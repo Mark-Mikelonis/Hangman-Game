@@ -10,6 +10,17 @@ currentWord = getCurrentWord();
 
 console.log("currentWord: " + currentWord);
 makePlaceholder(currentWord);
+window.onload = function draw(){
+    var html = "<p>Wins: " + wins + "</p>" + 
+    "<p>Current Word</p>" + 
+    "<p>" + placeholder.join(" ") + "</p>" + 
+    "<p>Number of guesses remaining</p>" + 
+    "<p>" + guessesLeft + "</p>" + 
+    "<p>Letters already guessed</p>" + 
+    "<p>" + guesses.toString() + "</p>";
+    document.querySelector("#hangman").innerHTML = html;
+}
+
 console.log("placeholder: " + placeholder);
 function reset() {
     currentWord = getCurrentWord();
@@ -19,7 +30,6 @@ function reset() {
     guessesLeft = 12;
     makePlaceholder(currentWord);
 }
-
 
 function makePlaceholder(word) {
     for (var i = 0; i < word.length; i++) {
@@ -38,12 +48,14 @@ function makePlaceholder(word) {
     }
 }
 function win(){
-    // placeholder = currentWord.toArray();
-    // setTimeout(function(){
-    //do what you need here
+    
+    setTimeout(function(){
+   
+    console.log("in Win");
+    placeholder = currentWord.split("");
     alert("You Win! The word was " + currentWord);
     reset();
-// }, 2000);
+}, 1);
 }
     
     
@@ -60,12 +72,7 @@ document.onkeyup = function(element) {
 
     console.log("userGuess: " + userGuess);
     console.log("currentWord:" + currentWord);
-    // multiple character instances
-    // uppercase comparison
-    // if (guessesLeft <= 0){
-    //     reset();
-        
-    // }
+    
     if (charArray.indexOf(userGuess) !== -1 && guesses.indexOf(userGuess) === -1) {
     	guesses.push(userGuess);
     	guessesLeft--;
@@ -87,7 +94,6 @@ document.onkeyup = function(element) {
             console.log("placeholder: " + placeholder.toString());
             console.log("currentWord: "+currentWord.toString());
             if (placeholder.indexOf("_") == -1) {
-                placeholder[i] = c.toString();
                 wins++;
                 win();
             }
