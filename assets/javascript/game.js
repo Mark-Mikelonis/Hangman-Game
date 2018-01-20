@@ -82,8 +82,7 @@ function getCurrentWord() {
 }
 document.onkeyup = function(element) {
     userGuess = element.key;
-    audioElement.loop = false;
-    audioElement.pause();
+    
 
     console.log("userGuess: " + userGuess);
     console.log("currentWord:" + currentWord);
@@ -117,13 +116,5 @@ document.onkeyup = function(element) {
     } 
 
     setup();
-    // var html = "<h2>Press any key to get started</h2>" +
-    // "<p>Wins: " + wins + "</p>" + 
-    // "<p>Current Word</p>" + 
-    // "<p>" + placeholder.join(" ") + "</p>" + 
-    // "<p>Number of guesses remaining</p>" + 
-    // "<p>" + guessesLeft + "</p>" + 
-    // "<p>Letters already guessed</p>" + 
-    // "<p>" + guesses.toString().toUpperCase() + "</p>";
-    // document.querySelector("#hangman").innerHTML = html;
+   
 }
